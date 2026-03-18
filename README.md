@@ -25,13 +25,22 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- The game's purpose is to guess a chosen number between 1 and 50, 100, or 200 depending on the difficulty. The game tells you to guess higher or lower relative to the number you have chosen.
+- Detail which bugs you found.
+  1. Hard difficulty range incorrect — Hard difficulty was originally 1–50 which was easier than Normal which had 1-100.
+  2. Scoring logic — Guessing a number higher than the chosen number on even attempts rewarded +5 points instead of deducting points.
+  3. New game reset bug — Clicking "New Game" always generated a secret using randint(1, 100), ignoring the selected difficulty, and reset attempts to 1 instead of 0.
+  4. Secret type bug — On even attempts, the secret was cast to a string, breaking the higher/lower comparison in check_guess.
+
+- Explain what fixes you applied.
+  1. Changed Hard difficulty range to 1–200 so it is harder than Normal.
+  2. Removed the attempt_number % 2 condition so that guessing a wrong number always deducts 5 points.
+  3. Fixed "New Game" to reset attempts to 0 and use random.randint(low, high) based on selected difficulty.
+  4. Removed the string conversion so the secret is always compared as an integer.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- ![Screenshot](<Winning Screenshot.png>)
 
 ## 🚀 Stretch Features
 
